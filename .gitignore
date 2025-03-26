@@ -1,0 +1,35 @@
+# Bytecode compilado
+__pycache__/
+*.py[cod]
+
+# Arquivos de ambiente virtual
+venv/
+.env/
+
+# Configurações de IDEs
+.vscode/
+.idea/
+*.iml
+
+# Arquivos de log e temporários
+*.log
+*.tmp
+
+# Dependências instaladas
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Arquivos gerados por testes
+.coverage
+.tox/
+nosetests.xml
+pytest_cache/
+
+# Arquivos de banco de dados SQLite
+*.sqlite3
+
+# Arquivos de build e distribuição
+build/
+dist/
+*.egg-info/
+*.eggs/
