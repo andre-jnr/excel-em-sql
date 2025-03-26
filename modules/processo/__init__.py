@@ -8,6 +8,11 @@ def gerar_comando_sql(msg_erro=''):
     lst_dados = sql.converter_string(lst_dados)
 
     # comando para criar a tabela temporária  com os dados da planilha
+    if len(lst_dados[0]) > 7:
+      gerar_comando_sql(msg_erro=f'A aba selecionada tem mais colunas que que a tabela temporária do sped fiscal suporta')
+    if len(lst_dados[0]) < 7:
+      gerar_comando_sql(msg_erro=f'A aba selecionada tem mais colunas que que a tabela temporária do sped fiscal suporta')
+
     comando_sql = sql.criar_comando_sql(lst_dados)
 
   except FileNotFoundError:

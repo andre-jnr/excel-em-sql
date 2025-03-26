@@ -1,3 +1,5 @@
+from modules.menu import limpar_terminal
+
 def ler_base_de_dados(caminho_arquivo):
   """Ler a base de dados em excel e converte para uma lista Python
 
@@ -8,12 +10,36 @@ def ler_base_de_dados(caminho_arquivo):
       list: retorna uma lista Python com todos os dados da tabela
   """
   import pandas as pd
-
-  df = pd.read_excel(caminho_arquivo)
+  aba = listar_abas(caminho_arquivo)
+  df = pd.read_excel(caminho_arquivo, sheet_name=aba)
 
   dados_lista = df.values.tolist()
 
   return dados_lista
+
+
+def listar_abas(nome_arquivo, msg_erro=''):
+  import pandas as pd
+  limpar_terminal()
+  arquivo = pd.ExcelFile(nome_arquivo)
+  abas = arquivo.sheet_names
+
+  print('Escolha uma aba da planilha: ')
+
+  for index, aba in enumerate(abas):
+    print(f'[{index + 1}] - {aba}')
+
+  try:
+    resposta = int(input('-> '))
+
+    if int(resposta) > len(abas):
+      listar_abas(nome_arquivo, msg_erro='Você escolheu uma opção que ultrapassa nossas opções!')
+
+    return abas[int(resposta) - 1]
+
+  except ValueError:
+    listar_abas(nome_arquivo, msg_erro='Escolha uma opção válida, por gentileza!')
+
 
 
 def converter_string(lista):
